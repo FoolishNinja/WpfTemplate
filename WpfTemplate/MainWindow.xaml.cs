@@ -50,9 +50,10 @@ namespace WpfTemplate
                             new Animal { Name = "Kevin", Age = 15, BirthDate = DateTime.UtcNow }
                         },
                         Callback = (animal) => { Message.Info(animal.Name);  }
-                    }
+                    },
+                    new ImageFormField { Path = "icon.png" }
                 }
-            }, 
+            },
             new MenuBar { ToolBarEntries = new List<MenuBarEntry>()
             {
                 new MenuBarEntry { Text = "File", Callback = () => {}, Children = new List<MenuBarEntry>()

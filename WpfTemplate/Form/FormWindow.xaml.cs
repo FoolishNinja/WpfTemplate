@@ -21,7 +21,6 @@ namespace WpfTemplate
             InitializeComponent();
             DataContext = Model;
             InitializeGrid();
-            
         }
 
         private void InitializeGrid()

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using WpfTemplate.Types;
 
 namespace WpfTemplate.Form
 {
     public class FormWindowModel : Model
     {
         public List<List<FormField>> FormFieldGrid { get; set; }
+        public MenuBar FormToolBar { get; set; }
 
 
         private string _Title { get; set; }
@@ -40,10 +42,11 @@ namespace WpfTemplate.Form
         }
 
 
-        public FormWindowModel(string title, List<List<FormField>> formFieldGrid, int width)
+        public FormWindowModel(string title, List<List<FormField>> formFieldGrid, int width, MenuBar formToolBar)
         {
             Title = title;
             FormFieldGrid = formFieldGrid;
+            FormToolBar = formToolBar;
             Width = width == -1 ? formFieldGrid.Count * (int) FormSize.M : width;
 
             int maxFormFieldsInARow = 0;

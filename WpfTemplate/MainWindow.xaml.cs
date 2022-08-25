@@ -5,6 +5,7 @@ using System.Windows;
 
 using WpfTemplate.Form;
 using WpfTemplate.Form.FormFields;
+using WpfTemplate.Types;
 
 namespace WpfTemplate
 {
@@ -35,7 +36,41 @@ namespace WpfTemplate
                 {
                     new ButtonFormField { Label = "Button", Callback = () => { } },
                     new ListBoxFormField<string> {Label = "ListBox", Entries = entries, Callback = (value) => Message.Info(value) },
+                    new TableFormField<Animal> { Label = "Animals", Headers = new List<TableHeader>()
+                        {
+                            new TableHeader { Label = "Name", PropertyName = "Name", WidthRatio = 1 },
+                            new TableHeader { Label = "Age", PropertyName = "Age", WidthRatio = 1 },
+                            new TableHeader { Label = "Birth date", PropertyName = "BirthDate", WidthRatio = 2 },
+                        },
+                        Entries = new List<Animal>()
+                        {
+                            new Animal { Name = "Kevin", Age = 15, BirthDate = DateTime.UtcNow },
+                            new Animal { Name = "Kevin", Age = 15, BirthDate = DateTime.UtcNow },
+                            new Animal { Name = "Kevin", Age = 15, BirthDate = DateTime.UtcNow },
+                            new Animal { Name = "Kevin", Age = 15, BirthDate = DateTime.UtcNow }
+                        },
+                        Callback = (animal) => { Message.Info(animal.Name);  }
+                    }
                 }
+            }, 
+            new MenuBar { ToolBarEntries = new List<MenuBarEntry>()
+            {
+                new MenuBarEntry { Text = "File", Callback = () => {}, Children = new List<MenuBarEntry>()
+                    {
+                        new MenuBarEntry { Text = "Exit" , Callback = () => {} }
+                    }
+                },
+                new MenuBarEntry { Text = "File", Callback = () => {}, Children = new List<MenuBarEntry>()
+                    {
+                        new MenuBarEntry { Text = "Exit" , Callback = () => {} }
+                    }
+                },
+                new MenuBarEntry { Text = "File", Callback = () => {}, Children = new List<MenuBarEntry>()
+                    {
+                        new MenuBarEntry { Text = "Exit" , Callback = () => {} }
+                    }
+                }
+            }
             }).Show();
             Thread.Sleep(2000);
             labelFormField.IsValid = true;

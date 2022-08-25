@@ -12,15 +12,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Controls\DropDown.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\TextInput.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\ToolBar.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Form\FormWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

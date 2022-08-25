@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
-namespace WpfTemplate.Controls.ControlModels.ToolBar
+namespace WpfTemplate.Types
 {
-    public class ToolBarEntry
+    public class MenuBarEntry
     {
         public string Text { get; set; }
         public Action? Callback = () => { };
-        public List<ToolBarEntry> Children = new List<ToolBarEntry>();
+        public List<MenuBarEntry> Children = new List<MenuBarEntry>();
     }
 }

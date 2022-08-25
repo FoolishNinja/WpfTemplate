@@ -34,15 +34,28 @@ namespace WpfTemplate.Form.FormFields
                 PrimaryUIElement.Items.Add(entry.Key);
             }
             PrimaryUIElement.SelectionChanged += PrimaryUIElement_SelectionChanged;
+            PrimaryUIElement.SetValue(Grid.RowSpanProperty, Rowspan - 1);
             grid.Children.Add(PrimaryUIElement);
             base.RenderToGrid(grid, currentRow, currentCol);
         }
 
         private void PrimaryUIElement_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int selectedIndex = (sender as ListBox).SelectedIndex;
+            int selectedIndex = PrimaryUIElement.SelectedIndex;
             if (selectedIndex == -1) return;
             Callback.Invoke(Entries[Entries.Keys.ToList()[selectedIndex]]);
+        }
+
+        public void AddEntry(string label, T value)
+        {
+            Entries.Add(label, value);
+            PrimaryUIElement.Items.Add(label);
+        }
+
+        public void RemoveEntry(string label)
+        {
+            Entries.Remove(label);
+            PrimaryUIElement.Items.Remove(label);
         }
     }
 }

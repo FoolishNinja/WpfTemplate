@@ -71,7 +71,7 @@ namespace WpfTemplate.Form
         {
             ValidationMessageLabel = new Label();
             ValidationMessageLabel.Content = ValidationMessage;
-            ValidationMessageLabel.Foreground = (SolidColorBrush) new BrushConverter().ConvertFrom("#ff0000");
+            ValidationMessageLabel.Foreground = Utils.GetColorBrushFromHex("#ff0000");
             ValidationMessageLabel.Visibility = IsValid ? Visibility.Hidden : Visibility.Visible;
             ValidationMessageLabel.SetValue(Grid.RowProperty, currentRow + Rowspan);
             ValidationMessageLabel.SetValue(Grid.ColumnProperty, 1);

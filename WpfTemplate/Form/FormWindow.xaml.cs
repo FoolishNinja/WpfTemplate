@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfTemplate.Form;
 using WpfTemplate.Form.FormFields;
+using WpfTemplate.Types;
 
 namespace WpfTemplate
 {
@@ -14,9 +15,9 @@ namespace WpfTemplate
     {
         private FormWindowModel Model;
 
-        public FormWindow(string title, List<List<FormField>> formFieldGrid, FormSize? formSize = FormSize.DYNAMIC)
+        public FormWindow(string title, List<List<FormField>> formFieldGrid, MenuBar formToolBar, FormSize? formSize = FormSize.DYNAMIC)
         {
-            Model = new FormWindowModel(title, formFieldGrid, (int) formSize);
+            Model = new FormWindowModel(title, formFieldGrid, (int) formSize, formToolBar);
             InitializeComponent();
             DataContext = Model;
             InitializeGrid();
@@ -27,6 +28,10 @@ namespace WpfTemplate
         {
 
             FormGrid.ShowGridLines = FormStyling.SHOW_GRID;
+            if(Model.FormToolBar != null)
+            {
+                Model.FormToolBar.RenderToGrid(FormGrid);
+            }
             GenerateColumnsAndRows();
             RenderFormFields();
         }
@@ -37,6 +42,11 @@ namespace WpfTemplate
             {
                 // Left and right spacers
                 FormGrid.ColumnDefinitions.Add(GetColumnDefinition(i == 0 || i % 25 == 0 ? 2 : 1));
+            }
+
+            if (Model.FormToolBar != null)
+            {
+                FormGrid.RowDefinitions.Add(GetRowDefinition(2));
             }
 
             int maxAmountOfRows = 0;
@@ -65,7 +75,7 @@ namespace WpfTemplate
             int currentCol = 1;
             foreach (List<FormField> formFieldRow in Model.FormFieldGrid)
             {
-                int currentRow = 1;
+                int currentRow = Model.FormToolBar == null ? 1 : 2;
                 foreach (FormField field in formFieldRow)
                 {
                     field.RenderToGrid(FormGrid, currentRow, currentCol);

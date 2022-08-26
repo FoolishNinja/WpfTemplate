@@ -10,10 +10,10 @@ namespace WpfTemplate.Form.FormFields
     {
         public string Label { get; set; }
         public Action<T> Callback { get; set; }
-        public List<TableHeader> Headers { get; set; } 
+        public List<TableHeader> Headers { get; set; }
         public List<T> Entries { get; set; }
 
-        public TableFormField ()
+        public TableFormField()
         {
             Rowspan = 10;
             PrimaryUIElement = new DataGrid();
@@ -38,7 +38,7 @@ namespace WpfTemplate.Form.FormFields
                 dataGridTextColumn.Width = new DataGridLength(header.WidthRatio, DataGridLengthUnitType.Star);
                 PrimaryUIElement.Columns.Add(dataGridTextColumn);
             }
-            foreach(T entry in Entries)
+            foreach (T entry in Entries)
             {
                 PrimaryUIElement.Items.Add(entry);
             }
@@ -68,7 +68,7 @@ namespace WpfTemplate.Form.FormFields
         {
             Entries.Remove(item);
             PrimaryUIElement.Items.Clear();
-            foreach(T entry in Entries)
+            foreach (T entry in Entries)
             {
                 PrimaryUIElement.Items.Add(entry);
             }

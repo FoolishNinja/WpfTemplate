@@ -1,7 +1,6 @@
 ﻿using SwissSkillsTemplate;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace WpfTemplate.Form
 {
@@ -23,7 +22,8 @@ namespace WpfTemplate.Form
         public int Row
         {
             get => _Row;
-            set {
+            set
+            {
                 _Row = value;
                 PrimaryUIElement.SetValue(Grid.RowProperty, value);
                 PrimaryUIElement.SetValue(Grid.RowSpanProperty, Rowspan);
@@ -42,14 +42,14 @@ namespace WpfTemplate.Form
             }
         }
 
-        private bool _IsValid { get; set; }
+        public bool _IsValid = true;
         public bool IsValid
         {
             get => _IsValid;
             set
             {
                 _IsValid = value;
-                if(ValidationMessageLabel != null)
+                if (ValidationMessageLabel != null)
                     ValidationMessageLabel.Visibility = _IsValid ? Visibility.Hidden : Visibility.Visible;
             }
         }
@@ -61,7 +61,7 @@ namespace WpfTemplate.Form
 
         public FormField()
         {
-            if(Name == null)
+            if (Name == null)
             {
                 Name = Utils.RandomCharacterString(10);
             }

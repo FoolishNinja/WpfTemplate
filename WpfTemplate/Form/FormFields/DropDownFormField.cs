@@ -32,7 +32,7 @@ namespace WpfTemplate.Form.FormFields
             grid.Children.Add(label);
             Row = currentRow + 1;
             Col = currentCol;
-            foreach(KeyValuePair<string, T> entry in DropDownEntries)
+            foreach (KeyValuePair<string, T> entry in DropDownEntries)
             {
                 PrimaryUIElement.Items.Add(entry.Key);
             }
@@ -62,7 +62,7 @@ namespace WpfTemplate.Form.FormFields
         public void RemoveEntry(string item)
         {
             PrimaryUIElement.Items.Clear();
-            foreach(KeyValuePair<String, T> entry in DropDownEntries)
+            foreach (KeyValuePair<String, T> entry in DropDownEntries)
             {
                 if (entry.Key == item) continue;
                 PrimaryUIElement.Items.Add(entry.Value);

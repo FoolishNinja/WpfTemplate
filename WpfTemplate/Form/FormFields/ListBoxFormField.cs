@@ -7,8 +7,19 @@ namespace WpfTemplate.Form.FormFields
 {
     public class ListBoxFormField<T> : FormField<ListBox>
     {
-        public string Label { get; set; }
-        public Dictionary<string, T> Entries { get; set; } 
+        private Label LabelItem;
+        private string _Label { get; set; }
+        public string Label
+        {
+            get => _Label;
+            set
+            {
+                _Label = value;
+                if (LabelItem != null)
+                    LabelItem.Content = value;
+            }
+        }
+        public Dictionary<string, T> Entries { get; set; }
         public Action<T> Callback { get; set; }
 
         public ListBoxFormField()
@@ -20,16 +31,16 @@ namespace WpfTemplate.Form.FormFields
 
         public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
         {
-            Label label = new Label();
-            label.Content = Label;
-            label.FontSize = FormStyling.FONT_SIZE;
-            label.SetValue(Grid.RowProperty, currentRow);
-            label.SetValue(Grid.ColumnProperty, currentCol);
-            label.SetValue(Grid.ColumnSpanProperty, FormStyling.COLUMNS);
-            grid.Children.Add(label);
+            LabelItem = new Label();
+            LabelItem.Content = Label;
+            LabelItem.FontSize = FormStyling.FONT_SIZE;
+            LabelItem.SetValue(Grid.RowProperty, currentRow);
+            LabelItem.SetValue(Grid.ColumnProperty, currentCol);
+            LabelItem.SetValue(Grid.ColumnSpanProperty, FormStyling.COLUMNS);
+            grid.Children.Add(LabelItem);
             Row = currentRow + 1;
             Col = currentCol;
-            foreach(KeyValuePair<string, T> entry in Entries)
+            foreach (KeyValuePair<string, T> entry in Entries)
             {
                 PrimaryUIElement.Items.Add(entry.Key);
             }
@@ -48,7 +59,7 @@ namespace WpfTemplate.Form.FormFields
 
         public void AddEntry(string label, T value)
         {
-            Entries.Add(label, value);
+            Entries.TryAdd(label, value);
             PrimaryUIElement.Items.Add(label);
         }
 

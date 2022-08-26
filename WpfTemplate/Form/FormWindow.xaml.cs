@@ -13,11 +13,11 @@ namespace WpfTemplate
     /// </summary>
     public partial class FormWindow : Window
     {
-        private FormWindowModel Model;
+        public FormWindowModel Model;
 
         public FormWindow(string title, List<List<FormField>> formFieldGrid, MenuBar formToolBar, FormSize? formSize = FormSize.DYNAMIC)
         {
-            Model = new FormWindowModel(title, formFieldGrid, (int) formSize, formToolBar);
+            Model = new FormWindowModel(title, formFieldGrid, (int)formSize, formToolBar);
             InitializeComponent();
             DataContext = Model;
             InitializeGrid();
@@ -27,7 +27,7 @@ namespace WpfTemplate
         {
 
             FormGrid.ShowGridLines = FormStyling.SHOW_GRID;
-            if(Model.FormToolBar != null)
+            if (Model.FormToolBar != null)
             {
                 Model.FormToolBar.RenderToGrid(FormGrid);
             }
@@ -37,7 +37,7 @@ namespace WpfTemplate
 
         private void GenerateColumnsAndRows()
         {
-            for(int i = 0; i < (Model.FormFieldGrid.Count * FormStyling.COLUMNS + 1) + 2; i++)
+            for (int i = 0; i < (Model.FormFieldGrid.Count * FormStyling.COLUMNS + 1) + 2; i++)
             {
                 // Left and right spacers
                 FormGrid.ColumnDefinitions.Add(GetColumnDefinition(i == 0 || i % 25 == 0 ? 2 : 1));

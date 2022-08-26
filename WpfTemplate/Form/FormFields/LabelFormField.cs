@@ -5,7 +5,18 @@ namespace WpfTemplate.Form.FormFields
 {
     public class LabelFormField : FormField<Label>
     {
-        public string Text { get; set; }
+        private string _Text { get; set; }
+        public string Text
+        {
+            get => _Text;
+            set
+            {
+                _Text = value;
+                PrimaryUIElement.Content = Text;
+            }
+        }
+
+        public int FontSize = -1;
 
         public LabelFormField()
         {
@@ -19,7 +30,7 @@ namespace WpfTemplate.Form.FormFields
             Col = currentCol;
             PrimaryUIElement.Content = Text;
             PrimaryUIElement.Name = Name;
-            PrimaryUIElement.FontSize = FormStyling.FONT_SIZE;
+            PrimaryUIElement.FontSize = FontSize == -1 ? FormStyling.FONT_SIZE : FontSize;
             grid.Children.Add(PrimaryUIElement);
             base.RenderToGrid(grid, currentRow, currentCol);
         }

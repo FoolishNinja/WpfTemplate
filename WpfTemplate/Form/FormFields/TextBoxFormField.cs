@@ -9,7 +9,20 @@ namespace WpfTemplate.Form.FormFields
     {
         public string Label { get; set; }
         public string Placeholder { get; set; }
-        public string Value { get; set; }
+
+        private string _Value { get; set; }
+        public string Value
+        {
+            get => _Value;
+            set
+            {
+                _Value = value;
+                PrimaryUIElement.Text = value;
+            }
+        }
+
+        public bool IsReadOnly = false;
+
         public Action<string> Callback { get; set; }
 
         public TextBoxFormField()
@@ -36,6 +49,7 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.FontSize = 13;
             PrimaryUIElement.Text = Value != null ? Value : Placeholder;
             PrimaryUIElement.SetValue(Grid.RowSpanProperty, 1);
+            PrimaryUIElement.IsReadOnly = IsReadOnly;
 
             grid.Children.Add(PrimaryUIElement);
             base.RenderToGrid(grid, currentRow, currentCol);
@@ -43,12 +57,13 @@ namespace WpfTemplate.Form.FormFields
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Callback.Invoke(PrimaryUIElement.Text);
+
+            Callback.Invoke(PrimaryUIElement.Text.Trim());
         }
 
         public void RemovePlaceholder(object sender, EventArgs e)
         {
-            if(PrimaryUIElement.Text == Placeholder)
+            if (PrimaryUIElement.Text == Placeholder)
             {
                 PrimaryUIElement.Text = "";
             }
@@ -56,7 +71,7 @@ namespace WpfTemplate.Form.FormFields
 
         public void AddPlaceholder(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(PrimaryUIElement.Text))
+            if (string.IsNullOrWhiteSpace(PrimaryUIElement.Text))
             {
                 PrimaryUIElement.Text = Placeholder;
             }

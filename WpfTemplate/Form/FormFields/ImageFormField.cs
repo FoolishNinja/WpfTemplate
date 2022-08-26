@@ -7,6 +7,8 @@ namespace WpfTemplate.Form.FormFields
     public class ImageFormField : FormField<Image>
     {
         public string Path { get; set; }
+        public int Width = -1;
+        public int Height = -1;
 
         public ImageFormField()
         {
@@ -24,8 +26,11 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.Source = bitmapImage;
             Row = currentCol;
             Col = currentCol;
+            PrimaryUIElement.Width = Width == -1 ? bitmapImage.Width : Width;
+            PrimaryUIElement.Height = Height == -1 ? bitmapImage.Height : Height;
             grid.Children.Add(PrimaryUIElement);
             base.RenderToGrid(grid, currentRow, currentCol);
         }
     }
+}
 }

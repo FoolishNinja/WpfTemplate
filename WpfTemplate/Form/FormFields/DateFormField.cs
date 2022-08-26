@@ -35,8 +35,8 @@ namespace WpfTemplate.Form.FormFields
 
         private void PrimaryUIElement_SelectedDateChanged(object? sender, SelectionChangedEventArgs e)
         {
-            if(PrimaryUIElement.SelectedDate != null)
-                Callback.Invoke((DateTime) PrimaryUIElement.SelectedDate);
+            if (PrimaryUIElement.SelectedDate != null)
+                Callback.Invoke((DateTime)PrimaryUIElement.SelectedDate);
         }
-    }
+    }s
 }

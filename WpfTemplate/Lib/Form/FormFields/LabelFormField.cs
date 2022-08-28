@@ -5,34 +5,31 @@ namespace WpfTemplate.Form.FormFields
 {
     public class LabelFormField : FormField<Label>
     {
-        private string _Text { get; set; }
-        public string Text
+        private string _Label { get; set; }
+        public string Label
         {
-            get => _Text;
+            get => _Label;
             set
             {
-                _Text = value;
-                PrimaryUIElement.Content = Text;
+                _Label = value;
+                PrimaryUIElement.Content = Label;
             }
         }
 
-        public int FontSize = -1;
+        public int FontSize = 15;
 
         public LabelFormField()
         {
-            Rowspan = 1;
             PrimaryUIElement = new Label();
         }
 
-        public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public override void RenderToGrid(Grid grid)
         {
-            Row = currentRow;
-            Col = currentCol;
-            PrimaryUIElement.Content = Text;
+            PrimaryUIElement.Content = Label;
             PrimaryUIElement.Name = Name;
-            PrimaryUIElement.FontSize = FontSize == -1 ? FormStyling.FONT_SIZE : FontSize;
+            PrimaryUIElement.FontSize = FontSize;
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid, currentRow, currentCol);
+            base.RenderToGrid(grid);
         }
     }
 }

@@ -12,24 +12,20 @@ namespace WpfTemplate.Form.FormFields
 
         public ImageFormField()
         {
-            Colspan = 12;
-            Rowspan = 6;
             PrimaryUIElement = new Image();
         }
 
-        public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public override void RenderToGrid(Grid grid)
         {
             BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
             bitmapImage.UriSource = new Uri($"pack://application:,,,/WpfTemplate;component/Resources/{Path}");
             bitmapImage.EndInit();
             PrimaryUIElement.Source = bitmapImage;
-            Row = currentCol;
-            Col = currentCol;
             PrimaryUIElement.Width = Width == -1 ? bitmapImage.Width : Width;
             PrimaryUIElement.Height = Height == -1 ? bitmapImage.Height : Height;
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid, currentRow, currentCol);
+            base.RenderToGrid(grid);
         }
     }
 }

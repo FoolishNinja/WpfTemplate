@@ -6,9 +6,9 @@ namespace WpfTemplate.Lib
     public class WindowManager
     {
         public static Dictionary<string, BaseModel> Models { get; set; } = new Dictionary<string, BaseModel>();
-        public static Dictionary<string, Window> Windows { get; set; } = new Dictionary<string, Window>();
+        public static Dictionary<string, BaseWindow> Windows { get; set; } = new Dictionary<string, BaseWindow>();
 
-        public static void AddWindow(string name, Window window)
+        public static void AddWindow(string name, BaseWindow window)
         {
             Windows.Add(name, window);
         }

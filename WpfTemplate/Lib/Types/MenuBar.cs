@@ -1,12 +1,7 @@
 ﻿using SwissSkillsTemplate;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WpfTemplate.Form;
 
 namespace WpfTemplate.Types
 {
@@ -22,7 +17,6 @@ namespace WpfTemplate.Types
                 menu.Items.Add(GenerateMenuItemRecursive(entry));
             }
             menu.Background = Utils.GetColorBrushFromHex("#ffffff");
-            menu.SetValue(Grid.ColumnSpanProperty, FormStyling.COLUMNS);
             grid.Children.Add(menu);
         }
 

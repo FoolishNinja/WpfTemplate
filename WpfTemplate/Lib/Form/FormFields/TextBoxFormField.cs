@@ -7,7 +7,6 @@ namespace WpfTemplate.Form.FormFields
 {
     public class TextBoxFormField : FormField<TextBox>
     {
-        public string Label { get; set; }
         public string Placeholder { get; set; }
 
         private string _Value { get; set; }
@@ -27,21 +26,11 @@ namespace WpfTemplate.Form.FormFields
 
         public TextBoxFormField()
         {
-            Rowspan = 2;
             PrimaryUIElement = new TextBox();
         }
 
-        public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public override void RenderToGrid(Grid grid)
         {
-            Label label = new Label();
-            label.SetValue(Grid.RowProperty, currentRow);
-            label.SetValue(Grid.ColumnProperty, currentCol);
-            label.SetValue(Grid.ColumnSpanProperty, FormStyling.COLUMNS);
-            label.FontSize = FormStyling.FONT_SIZE;
-            label.Content = Label;
-            grid.Children.Add(label);
-            Row = currentRow + 1;
-            Col = currentCol;
             PrimaryUIElement.GotFocus += RemovePlaceholder;
             PrimaryUIElement.LostFocus += AddPlaceholder;
             PrimaryUIElement.TextChanged += TextBox_TextChanged;
@@ -52,7 +41,7 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.IsReadOnly = IsReadOnly;
 
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid, currentRow, currentCol);
+            base.RenderToGrid(grid);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -14,15 +14,13 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement = new Button();
         }
 
-        public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public override void RenderToGrid(Grid grid)
         {
-            Row = currentRow;
-            Col = currentCol;
             PrimaryUIElement.Content = Label;
             PrimaryUIElement.Name = Name;
             PrimaryUIElement.Click += (sender, e) => Callback.Invoke();
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid, currentRow, currentCol);
+            base.RenderToGrid(grid);
         }
     }
 }

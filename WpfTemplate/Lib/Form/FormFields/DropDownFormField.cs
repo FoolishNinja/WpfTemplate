@@ -9,7 +9,6 @@ namespace WpfTemplate.Form.FormFields
 {
     public class DropDownFormField<T> : FormField<ComboBox>
     {
-        public string Label { get; set; }
         public Action<T> Callback { get; set; }
         public Dictionary<string, T> DropDownEntries { get; set; }
         public string SelectedEntryName { get; set; }
@@ -17,21 +16,11 @@ namespace WpfTemplate.Form.FormFields
 
         public DropDownFormField()
         {
-            Rowspan = 2;
             PrimaryUIElement = new ComboBox();
         }
 
-        public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public override void RenderToGrid(Grid grid)
         {
-            Label label = new Label();
-            label.Content = Label;
-            label.FontSize = FormStyling.FONT_SIZE;
-            label.SetValue(Grid.RowProperty, currentRow);
-            label.SetValue(Grid.ColumnProperty, currentCol);
-            label.SetValue(Grid.ColumnSpanProperty, FormStyling.COLUMNS);
-            grid.Children.Add(label);
-            Row = currentRow + 1;
-            Col = currentCol;
             foreach (KeyValuePair<string, T> entry in DropDownEntries)
             {
                 PrimaryUIElement.Items.Add(entry.Key);
@@ -42,7 +31,7 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.IsEditable = true;
             PrimaryUIElement.SetValue(Grid.RowSpanProperty, 1);
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid, currentRow, currentCol);
+            base.RenderToGrid(grid);
         }
 
         private void PrimaryUIElement_SelectionChanged(object sender, SelectionChangedEventArgs e)

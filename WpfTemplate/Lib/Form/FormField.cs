@@ -8,10 +8,10 @@ namespace WpfTemplate.Form
     public abstract class FormField
     {
         public string Name { get; set; }
-        public int Colspan = FormStyling.COLUMNS;
+        public int Colspan = 1;
         public int Rowspan = 1;
 
-        public virtual void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public virtual void RenderToGrid(Grid grid)
         {
         }
     }
@@ -67,14 +67,14 @@ namespace WpfTemplate.Form
             }
         }
 
-        public override void RenderToGrid(Grid grid, int currentRow, int currentCol)
+        public override void RenderToGrid(Grid grid)
         {
             ValidationMessageLabel = new Label();
             ValidationMessageLabel.Content = ValidationMessage;
             ValidationMessageLabel.Foreground = Utils.GetColorBrushFromHex("#ff0000");
             ValidationMessageLabel.Visibility = IsValid ? Visibility.Hidden : Visibility.Visible;
-            ValidationMessageLabel.SetValue(Grid.RowProperty, currentRow + Rowspan);
-            ValidationMessageLabel.SetValue(Grid.ColumnProperty, 1);
+            ValidationMessageLabel.SetValue(Grid.RowProperty, Row + Rowspan);
+            ValidationMessageLabel.SetValue(Grid.ColumnProperty, Col);
             ValidationMessageLabel.SetValue(Grid.ColumnSpanProperty, Colspan);
             grid.Children.Add(ValidationMessageLabel);
         }

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using WpfTemplate.Lib;
 using WpfTemplate.Types;
 
 namespace WpfTemplate.Form
 {
-    public class FormWindowModel : Model
+    public class FormWindowModel : BaseModel
     {
         public List<List<FormField>> FormFieldGrid { get; set; }
         public MenuBar FormToolBar { get; set; }

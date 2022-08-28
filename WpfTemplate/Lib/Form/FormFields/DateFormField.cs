@@ -38,5 +38,5 @@ namespace WpfTemplate.Form.FormFields
             if (PrimaryUIElement.SelectedDate != null)
                 Callback.Invoke((DateTime)PrimaryUIElement.SelectedDate);
         }
-    }s
+    }
 }

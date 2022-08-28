@@ -5,6 +5,8 @@ using System.Windows;
 
 using WpfTemplate.Form;
 using WpfTemplate.Form.FormFields;
+using WpfTemplate.Lib;
+using WpfTemplate.Models;
 using WpfTemplate.Types;
 
 namespace WpfTemplate
@@ -16,6 +18,7 @@ namespace WpfTemplate
     {
         public MainWindow()
         {
+            new BaseWindow<TestModel>().Show();
             InitializeComponent();
             this.Hide();
             Dictionary<string, string> entries = new Dictionary<string, string>();

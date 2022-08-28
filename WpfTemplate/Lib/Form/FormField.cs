@@ -8,8 +8,6 @@ namespace WpfTemplate.Form
     public abstract class FormField
     {
         public string Name { get; set; }
-        public int Colspan = 1;
-        public int Rowspan = 1;
 
         public virtual void RenderToGrid(Grid grid)
         {
@@ -19,6 +17,27 @@ namespace WpfTemplate.Form
     public class FormField<T> : FormField where T : UIElement
     {
         private int _Row { get; set; }
+
+        private int _Colspan { get; set; }
+        public int Colspan
+        {
+            get => _Colspan;
+            set
+            {
+                _Colspan = value;
+                PrimaryUIElement.SetValue(Grid.ColumnSpanProperty, value);
+            }
+        }
+        private int _Rowspan { get; set; }
+        public int Rowspan 
+        {
+            get => _Rowspan;
+            set
+            {
+                _Rowspan = value;
+                PrimaryUIElement.SetValue(Grid.RowSpanProperty, value);
+            }
+        }
         public int Row
         {
             get => _Row;
@@ -26,7 +45,6 @@ namespace WpfTemplate.Form
             {
                 _Row = value;
                 PrimaryUIElement.SetValue(Grid.RowProperty, value);
-                PrimaryUIElement.SetValue(Grid.RowSpanProperty, Rowspan);
             }
         }
 
@@ -37,8 +55,7 @@ namespace WpfTemplate.Form
             set
             {
                 _Col = value;
-                PrimaryUIElement.SetCurrentValue(Grid.ColumnProperty, value);
-                PrimaryUIElement.SetValue(Grid.ColumnSpanProperty, Colspan);
+                PrimaryUIElement.SetValue(Grid.ColumnProperty, value);
             }
         }
 
@@ -65,18 +82,6 @@ namespace WpfTemplate.Form
             {
                 Name = Utils.RandomCharacterString(10);
             }
-        }
-
-        public override void RenderToGrid(Grid grid)
-        {
-            ValidationMessageLabel = new Label();
-            ValidationMessageLabel.Content = ValidationMessage;
-            ValidationMessageLabel.Foreground = Utils.GetColorBrushFromHex("#ff0000");
-            ValidationMessageLabel.Visibility = IsValid ? Visibility.Hidden : Visibility.Visible;
-            ValidationMessageLabel.SetValue(Grid.RowProperty, Row + Rowspan);
-            ValidationMessageLabel.SetValue(Grid.ColumnProperty, Col);
-            ValidationMessageLabel.SetValue(Grid.ColumnSpanProperty, Colspan);
-            grid.Children.Add(ValidationMessageLabel);
         }
     }
 }

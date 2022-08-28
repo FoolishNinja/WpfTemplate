@@ -37,11 +37,8 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.Name = Name;
             PrimaryUIElement.FontSize = 13;
             PrimaryUIElement.Text = Value != null ? Value : Placeholder;
-            PrimaryUIElement.SetValue(Grid.RowSpanProperty, 1);
             PrimaryUIElement.IsReadOnly = IsReadOnly;
-
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

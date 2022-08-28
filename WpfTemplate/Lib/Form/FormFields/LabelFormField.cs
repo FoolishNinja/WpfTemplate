@@ -29,7 +29,6 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.Name = Name;
             PrimaryUIElement.FontSize = FontSize;
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid);
         }
     }
 }

@@ -31,7 +31,6 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.IsEditable = true;
             PrimaryUIElement.SetValue(Grid.RowSpanProperty, 1);
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid);
         }
 
         private void PrimaryUIElement_SelectionChanged(object sender, SelectionChangedEventArgs e)

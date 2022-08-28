@@ -23,7 +23,8 @@ namespace WpfTemplate.Form.FormFields
             }
             PrimaryUIElement.SelectionChanged += PrimaryUIElement_SelectionChanged;
             PrimaryUIElement.SetValue(Grid.RowSpanProperty, Rowspan - 1);
-            grid.Children.Add(PrimaryUIElement);        }
+            grid.Children.Add(PrimaryUIElement); 
+        }
 
         private void PrimaryUIElement_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

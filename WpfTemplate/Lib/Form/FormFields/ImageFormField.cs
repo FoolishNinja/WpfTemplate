@@ -25,7 +25,6 @@ namespace WpfTemplate.Form.FormFields
             PrimaryUIElement.Width = Width == -1 ? bitmapImage.Width : Width;
             PrimaryUIElement.Height = Height == -1 ? bitmapImage.Height : Height;
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid);
         }
     }
 }

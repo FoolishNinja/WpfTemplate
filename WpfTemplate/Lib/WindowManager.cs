@@ -17,5 +17,15 @@ namespace WpfTemplate.Lib
         {
             Windows.Remove(name);
         }
+
+        public static void AddModel(string name, BaseModel baseModel)
+        {
+            Models.Add(name, baseModel);
+        }
+
+        public static void RemoveModelByName(string name)
+        {
+            Models.Remove(name);
+        }
     }
 }

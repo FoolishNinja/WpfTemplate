@@ -19,6 +19,8 @@ namespace WpfTemplate.Lib
         {
             Title = title;
             Model = model;
+            WindowManager.AddModel(nameof(T), model);
+            WindowManager.AddWindow(nameof(T), this);
             GenerateGrid();
             RenderModelFormFields();
         }
@@ -33,16 +35,18 @@ namespace WpfTemplate.Lib
             {
                 Grid.ColumnDefinitions.Add(GetColumnDefinition(1));
             }
-            Grid.ShowGridLines = true;
-            AddChild(Grid);
+            //Grid.ShowGridLines = true;
         }
 
         private void RenderModelFormFields()
         {
+            Width = Model.Width;
+            Height = Model.Height;
             foreach(FormField field in Model.Fields)
             {
                 field.RenderToGrid(Grid);
             }
+            AddChild(Grid);
         }
 
         private ColumnDefinition GetColumnDefinition(double widthRatio)

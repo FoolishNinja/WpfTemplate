@@ -15,11 +15,9 @@ namespace WpfTemplate.Form.FormFields
 
         public override void RenderToGrid(Grid grid)
         {
-            PrimaryUIElement.SetValue(Grid.RowSpanProperty, 1);
             PrimaryUIElement.SelectedDate = Value == null ? DateTime.UtcNow : Value;
             PrimaryUIElement.SelectedDateChanged += PrimaryUIElement_SelectedDateChanged;
             grid.Children.Add(PrimaryUIElement);
-            base.RenderToGrid(grid);
         }
 
         private void PrimaryUIElement_SelectedDateChanged(object? sender, SelectionChangedEventArgs e)

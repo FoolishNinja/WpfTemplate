@@ -7,6 +7,38 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CarloLib\UC\DropDownField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\ImageField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\LabelField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\PasswordField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\TextBoxField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CarloLib\UC\DropDownField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\ImageField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\LabelField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\PasswordField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\TextBoxField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

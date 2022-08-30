@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WpfTemplate
+namespace WpfTemplate.Utils
 {
     public class Message
     {
         public static void Info(string message, string? header = "Info", MessageBoxButton? button = MessageBoxButton.OK)
         {
-            MessageBox.Show(message, header, (MessageBoxButton) button, MessageBoxImage.Information);
+            MessageBox.Show(message, header, (MessageBoxButton)button, MessageBoxImage.Information);
         }
 
         public static void Warning(string message, string? header = "Warning", MessageBoxButton? button = MessageBoxButton.OK)

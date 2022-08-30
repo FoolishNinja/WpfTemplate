@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace SwissSkillsTemplate
+namespace WpfTemplate.Utils
 {
     public static class Utils
     {
@@ -13,7 +13,7 @@ namespace SwissSkillsTemplate
 
         public static int RoundToClostest(int inputValue, int roundToClosest)
         {
-            return (int)(Math.Round((double) inputValue / roundToClosest) * roundToClosest);
+            return (int)(Math.Round((double)inputValue / roundToClosest) * roundToClosest);
         }
 
         public static string RandomCharacterString(int length)
@@ -25,7 +25,7 @@ namespace SwissSkillsTemplate
 
         public static SolidColorBrush GetColorBrushFromHex(string hex)
         {
-            return (SolidColorBrush) new BrushConverter().ConvertFrom(hex);
+            return (SolidColorBrush)new BrushConverter().ConvertFrom(hex);
         }
     }
 }

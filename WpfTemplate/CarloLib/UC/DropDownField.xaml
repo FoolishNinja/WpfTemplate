@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:WpfTemplate.CarloLib.UC"
              mc:Ignorable="d">
     <Grid>
-        <ComboBox Name="ComboBox" ItemsSource="{Binding Path=Items}" SelectedItem="{Binding SelectedItem}" SelectionChanged="ComboBox_SelectionChanged" Text="{Binding Placeholder}"></ComboBox>
+        <ComboBox Name="ComboBox" ItemsSource="{Binding Path=Items}" SelectedValue="{Binding SelectedItem}" SelectionChanged="ComboBox_SelectionChanged" Text="{Binding Placeholder}" IsEditable="{Binding IsEditable}" IsReadOnly="True" IsSynchronizedWithCurrentItem="True"></ComboBox>
     </Grid>
 </UserControl>

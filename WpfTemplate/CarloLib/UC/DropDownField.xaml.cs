@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
+using WpfTemplate.Utils;
 
 namespace WpfTemplate.CarloLib.UC
 {
@@ -26,6 +27,18 @@ namespace WpfTemplate.CarloLib.UC
                 _Items = value;
                 Model.Items = new List<string>(value.Keys);
             }
+        }
+
+        public string Placeholder
+        {
+            get => Model.Placeholder;
+            set => Model.Placeholder = value;
+        }
+
+        public string SelectedItem
+        {
+            get => Model.SelectedItem;
+            set => Model.SelectedItem = value;
         }
 
         public Action<object> Callback
@@ -82,6 +95,7 @@ namespace WpfTemplate.CarloLib.UC
         {
             int selectedIndex = ComboBox.SelectedIndex;
             if (selectedIndex < 0) return;
+            Model.IsEditable = false;
             Callback.Invoke(new List<object>(Items.Values)[selectedIndex]);
         }
     }
@@ -102,6 +116,20 @@ namespace WpfTemplate.CarloLib.UC
         {
             get => _Placeholder;
             set => SetField(ref _Placeholder, value, "Placeholder");
+        }
+
+        private bool _IsEditable = true;
+        public bool IsEditable
+        {
+            get => _IsEditable;
+            set => SetField(ref _IsEditable, value, "IsEditable");
+        }
+
+        private string _SelectedItem;
+        public string SelectedItem
+        {
+            get => _SelectedItem;
+            set => SetField(ref _SelectedItem, value, "SelectedItem");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

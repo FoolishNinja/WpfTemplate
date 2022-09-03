@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfTemplate.CarloLib.UC.DropDownField"
+﻿<UserControl x:Class="WpfTemplate.CarloLib.UC.CheckBoxField"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:WpfTemplate.CarloLib.UC"
              mc:Ignorable="d">
     <Grid>
-        <ComboBox Name="ComboBox" ItemsSource="{Binding Path=Items}" Text="{Binding SelectedItem}" SelectionChanged="ComboBox_SelectionChanged" IsEditable="{Binding IsEditable}" IsReadOnly="True" IsSynchronizedWithCurrentItem="True"></ComboBox>
+        <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed"></CheckBox>
     </Grid>
 </UserControl>

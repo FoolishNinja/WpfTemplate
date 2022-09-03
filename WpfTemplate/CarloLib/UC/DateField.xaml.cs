@@ -1,48 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
-using WpfTemplate.Utils;
+
 
 namespace WpfTemplate.CarloLib.UC
 {
     /// <summary>
-    /// Interaction logic for DropDownField.xaml
+    /// Interaction logic for DateField.xaml
     /// </summary>
-    public partial class DropDownField : UserControl
+    public partial class DateField : UserControl
     {
-        public DropDownFieldModel Model = new DropDownFieldModel();
+        public DateFieldModel Model = new DateFieldModel();
         private long InitializationTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        public DropDownField()
+
+        public DateField()
         {
             InitializeComponent();
             DataContext = Model;
-
         }
 
-        public void AddItem(object item)
+        public DateTime SelectedDate
         {
-            Model.Items.Add(item);
+            get => Model.SelectedDate;
+            set => Model.SelectedDate = value;
         }
 
-        public void RemoveItem(object item)
-        {
-            Model.Items.Remove(item);
-        }
-
-        public ObservableCollection<object> Items
-        {
-            get => Model.Items;
-            set => Model.Items = value;
-        }
-        public string SelectedItem
-        {
-            get => Model.SelectedItem;
-            set => Model.SelectedItem = value;
-        }
-
-        public Action<object> Callback
+        public Action<DateTime> Callback
         {
             get => Model.Callback;
             set => Model.Callback = value;
@@ -92,49 +76,26 @@ namespace WpfTemplate.CarloLib.UC
             }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - InitializationTime < 1000) return;
-            int selectedIndex = ComboBox.SelectedIndex;
-            if (selectedIndex < 0) return;
-            Model.IsEditable = false;
-            object value = Items[selectedIndex];
-            Callback.Invoke(value);
+            Callback.Invoke(SelectedDate);
         }
     }
 
-    public class DropDownFieldModel : INotifyPropertyChanged
+    public class DateFieldModel : INotifyPropertyChanged
     {
-        private ObservableCollection<object> _Items;
-        public ObservableCollection<object> Items
-        {
-            get => _Items;
-            set {
-                SetField(ref _Items, value, "Items");
-            }
-        }
-
-        public Action<object> Callback;
-
-        private bool _IsEditable = true;
-        public bool IsEditable
-        {
-            get => _IsEditable;
-            set => SetField(ref _IsEditable, value, "IsEditable");
-        }
-
-        private string _SelectedItem = null;
-        public string SelectedItem
-        {
-            get => _SelectedItem;
-            set
-            {
-                if (Items.Contains(value)) IsEditable = false;
-                SetField(ref _SelectedItem, value, "SelectedItem");
-            }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Action<DateTime> Callback { get; set; }
+
+        private DateTime _SelectedDate;
+        public DateTime SelectedDate
+        {
+            get => _SelectedDate;
+            set => SetField(ref _SelectedDate, value, "SelectedDate");
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

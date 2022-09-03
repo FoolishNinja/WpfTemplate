@@ -7,6 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CarloLib\UC\CheckBoxField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\DateField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="CarloLib\UC\DropDownField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,6 +30,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="CarloLib\UC\CheckBoxField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\DateField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="CarloLib\UC\DropDownField.xaml">
       <SubType>Designer</SubType>
     </Page>

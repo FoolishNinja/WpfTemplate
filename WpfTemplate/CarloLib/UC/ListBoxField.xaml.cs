@@ -1,28 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace WpfTemplate.CarloLib.UC
 {
     /// <summary>
-    /// Interaction logic for PasswordField.xaml
+    /// Interaction logic for ListBoxField.xaml
     /// </summary>
-    public partial class PasswordField : UserControl
+    public partial class ListBoxField : UserControl
     {
-        public PasswordFieldModel Model = new PasswordFieldModel();
-        public PasswordField()
+        public ListBoxFieldModel Model = new ListBoxFieldModel();
+
+        public ListBoxField()
         {
             InitializeComponent();
             DataContext = Model;
         }
 
-        public Action<string> Callback
+        public ObservableCollection<string> Items
         {
-            get => Model.Callback;
-            set => Model.Callback = value;
+            get => Model.Items;
+            set => Model.Items = value;
         }
 
         private int _Column;
@@ -68,16 +79,11 @@ namespace WpfTemplate.CarloLib.UC
                 _RowSpan = value;
             }
         }
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            Model.Callback.Invoke(PasswordBox.Password);
-        }
     }
 
-    public class PasswordFieldModel : INotifyPropertyChanged
+    public class ListBoxFieldModel : INotifyPropertyChanged
     {
-        public Action<string> Callback;
+        public ObservableCollection<string> Items { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

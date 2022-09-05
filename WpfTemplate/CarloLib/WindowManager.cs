@@ -6,7 +6,7 @@ namespace WpfTemplate.CarloLib
     public class WindowManager
     {
         public static Dictionary<string, object> Store = new Dictionary<string, object>();
-        public static Dictionary<string, Window> Windows = new Dictionary<string, Window>();
+        public static Dictionary<string, BaseWindow> Windows = new Dictionary<string, BaseWindow>();
 
         public static void AddToStore(string key, object value)
         {
@@ -26,8 +26,9 @@ namespace WpfTemplate.CarloLib
                 Store.Remove(key);
         }
 
-        public static void AddWindow(string name, Window window)
+        public static void AddWindow(string name, BaseWindow window)
         {
+            if (Windows.ContainsKey(name)) return;
             Windows.Add(name, window);
         }
 
@@ -35,6 +36,11 @@ namespace WpfTemplate.CarloLib
         {
             if (Windows.ContainsKey(name))
                 Windows.Remove(name);
+        }
+
+        public static BaseWindow GetWindowByName(string name)
+        {
+            return Windows[name];
         }
     }
 }

@@ -11,7 +11,22 @@ using WpfTemplate.Utils;
 
 namespace WpfTemplate.CarloLib
 {
-    public class BaseWindow<T> : Window
+    public abstract class BaseWindow : Window
+    {
+        public static ColumnDefinition GetColumnDefinition(int width, GridUnitType gridTypeUnit = GridUnitType.Star)
+        {
+            ColumnDefinition columnDefinition = new ColumnDefinition();
+            columnDefinition.Width = new GridLength(width, gridTypeUnit);
+            return columnDefinition;
+        }
+        public static RowDefinition GetRowDefinition(int height, GridUnitType gridTypeUnit = GridUnitType.Star)
+        {
+            RowDefinition rowDefinition = new RowDefinition();
+            rowDefinition.Height = new GridLength(height, gridTypeUnit);
+            return rowDefinition;
+        }
+    }
+    public class BaseWindow<T> : BaseWindow
     {
         public string Name { get; set; }
         public T Model { get; set; }
@@ -78,19 +93,6 @@ namespace WpfTemplate.CarloLib
             BaseGrid.ColumnDefinitions.Add(GetColumnDefinition(1));
             BaseGrid.RowDefinitions.Add(GetRowDefinition(2));
             AddChild(BaseGrid);
-        }
-
-        private ColumnDefinition GetColumnDefinition(int width, GridUnitType gridTypeUnit = GridUnitType.Star)
-        {
-            ColumnDefinition columnDefinition = new ColumnDefinition();
-            columnDefinition.Width = new GridLength(width, gridTypeUnit);
-            return columnDefinition;
-        }
-        private RowDefinition GetRowDefinition(int height, GridUnitType gridTypeUnit = GridUnitType.Star)
-        {
-            RowDefinition rowDefinition = new RowDefinition();
-            rowDefinition.Height = new GridLength(height, gridTypeUnit);
-            return rowDefinition;
         }
     }
 }

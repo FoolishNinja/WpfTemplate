@@ -5,8 +5,8 @@ namespace WpfTemplate.CarloLib
 {
     public class WindowManager
     {
-        private static Dictionary<string, object> Store = new Dictionary<string, object>();
-        private static Dictionary<string, Window> Windows = new Dictionary<string, Window>();
+        public static Dictionary<string, object> Store = new Dictionary<string, object>();
+        public static Dictionary<string, Window> Windows = new Dictionary<string, Window>();
 
         public static void AddToStore(string key, object value)
         {

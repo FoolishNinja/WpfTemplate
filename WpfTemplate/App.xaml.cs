@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using WpfTemplate.CarloLib;
+using WpfTemplate.Models;
 
 namespace WpfTemplate
 {
@@ -13,5 +9,11 @@ namespace WpfTemplate
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            BaseWindow<TestModel> b = new BaseWindow<TestModel> { Model = new TestModel(), GridSize = GridSize.LARGE, Name = "TestWindow", Title = "Test" };
+            b.Initialize();
+            b.Show();
+        }
     }
 }

@@ -17,40 +17,28 @@ using System.Windows.Shapes;
 namespace WpfTemplate.CarloLib.UC
 {
     /// <summary>
-    /// Interaction logic for LabelField.xaml
+    /// Interaction logic for ButtonField.xaml
     /// </summary>
-    public partial class LabelField : UserControl
+    public partial class ButtonField : UserControl
     {
-        public LabelFieldModel Model = new LabelFieldModel();
+        public ButtonFieldModel Model = new ButtonFieldModel();
 
-        public LabelField()
+        public ButtonField()
         {
             InitializeComponent();
             DataContext = Model;
         }
 
-        public string Foreground
+        public string Label
         {
-            get => Model.Foreground;
-            set => Model.Foreground = value;
+            get => Model.Label;
+            set => Model.Label = value;
         }
 
-        public string FontFamily
+        public Action Callback
         {
-            get => Model.FontFamily;
-            set => Model.FontFamily = value;
-        }
-
-        public int FontSize
-        {
-            get => Model.FontSize;
-            set => Model.FontSize = value;
-        }
-
-        public string Text
-        {
-            get => Model.Text;
-            set => Model.Text = value;
+            get => Model.Callback;
+            set => Model.Callback = value;
         }
 
         private int _Column;
@@ -97,37 +85,22 @@ namespace WpfTemplate.CarloLib.UC
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Callback.Invoke();
+        }
     }
 
-    public class LabelFieldModel : INotifyPropertyChanged
+    public class ButtonFieldModel : INotifyPropertyChanged
     {
-        private string _Foreground = "black";
-        public string Foreground
-        {
-            get => _Foreground;
-            set => SetField(ref _Foreground, value, "Foreground");
-        }
 
-        public string _FontFamily = "Segoe UI";
+        public Action Callback;
 
-        public string FontFamily
+        private string _Label;
+        public string Label
         {
-            get => _FontFamily;
-            set =>  SetField(ref _FontFamily, value, "FontFamily");
-        }
-
-        private int _FontSize = 12;
-        public int FontSize
-        {
-            get => _FontSize;
-            set => SetField(ref _FontSize, value, "FontSize");
-        }
-
-        private string _Text;
-        public string Text
-        {
-            get => _Text;
-            set => SetField(ref _Text, value, "Text");
+            get => _Label;
+            set => SetField(ref _Label, value, "Label");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

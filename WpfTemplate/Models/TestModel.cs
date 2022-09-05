@@ -24,5 +24,19 @@ namespace WpfTemplate.Models
         public static DateField DateField = new DateField { SelectedDate = DateTime.UtcNow, Callback = (date) => { LabelField.Text = date.ToLongDateString(); }, Column = 1, Row = 13, ColumnSpan = 3 };
         [Field]
         public static CheckBoxField CheckBoxField = new CheckBoxField { IsChecked = false, Callback = (value) => { LabelField.Text = value.ToString(); }, Column = 1, Row = 17 };
+        [Field]
+        public static RadioField RadioField = new RadioField { Column = 7, Row = 1, ColumnSpan = 2, RowSpan = 2, Direction = "horizontal",  Callback = (value) => { LabelField.Text = value.ToString(); }, Labels = new List<string>() { "test", "abcdefg" }, Amount = 2 };
+        [Field]
+        public static ButtonField ButtonField = new ButtonField { Label = "test", Column = 7, Row = 4, ColumnSpan = 2, RowSpan = 2, Callback = () => { LabelField.Text = "Clicked button"; TableField.Items.RemoveAt(0); } };
+        [Field]
+        public static DateTimeDisplayField DateTimeDisplayField = new DateTimeDisplayField { Column = 7, Row = 6, ColumnSpan = 2 };
+        [Field]
+        public static TableField TableField = new TableField {
+            ItemType = typeof(User),
+            Items = new ObservableCollection<object>() { new User { Username = "MaxMuster", FirstName = "Max", LastName = "Mustermann" }, new User { Username = "FoolishNinja", FirstName = "Foolish", LastName = "Ninja" } }, 
+            ShowColumns = new List<string>() { "FirstName", "LastName"}, 
+            Column = 7, Row = 12, ColumnSpan = 6, RowSpan = 6,
+            Callback = (value) => { Message.Info(((User)value).FirstName);  }
+        };
     }
 }

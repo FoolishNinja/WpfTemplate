@@ -1,59 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Threading;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace WpfTemplate.CarloLib.UC
 {
     /// <summary>
-    /// Interaction logic for LabelField.xaml
+    /// Interaction logic for DateTimeDisplayField.xaml
     /// </summary>
-    public partial class LabelField : UserControl
+    public partial class DateTimeDisplayField : UserControl
     {
-        public LabelFieldModel Model = new LabelFieldModel();
+        public DateTimeDisplayFieldModel Model = new DateTimeDisplayFieldModel();
 
-        public LabelField()
+        public DateTimeDisplayField()
         {
             InitializeComponent();
             DataContext = Model;
-        }
-
-        public string Foreground
-        {
-            get => Model.Foreground;
-            set => Model.Foreground = value;
-        }
-
-        public string FontFamily
-        {
-            get => Model.FontFamily;
-            set => Model.FontFamily = value;
-        }
-
-        public int FontSize
-        {
-            get => Model.FontSize;
-            set => Model.FontSize = value;
-        }
-
-        public string Text
-        {
-            get => Model.Text;
-            set => Model.Text = value;
+            BaseGrid.Children.Add(Model.DateTimeLabelField);
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    DateTime now = DateTime.UtcNow;
+                    Model.DateTimeLabelField.Text = (now.Hour < 10 ? "0" : "") + now.Hour + ":" + (now.Minute < 10 ? "0" : "") + now.Minute + ":" + (now.Second < 10 ? "0" : "") + now.Second;
+                }
+            }).Start();
         }
 
         private int _Column;
+
         public int Column
         {
             get => _Column;
@@ -96,39 +73,11 @@ namespace WpfTemplate.CarloLib.UC
                 _RowSpan = value;
             }
         }
-
     }
 
-    public class LabelFieldModel : INotifyPropertyChanged
+    public class DateTimeDisplayFieldModel : INotifyPropertyChanged
     {
-        private string _Foreground = "black";
-        public string Foreground
-        {
-            get => _Foreground;
-            set => SetField(ref _Foreground, value, "Foreground");
-        }
-
-        public string _FontFamily = "Segoe UI";
-
-        public string FontFamily
-        {
-            get => _FontFamily;
-            set =>  SetField(ref _FontFamily, value, "FontFamily");
-        }
-
-        private int _FontSize = 12;
-        public int FontSize
-        {
-            get => _FontSize;
-            set => SetField(ref _FontSize, value, "FontSize");
-        }
-
-        private string _Text;
-        public string Text
-        {
-            get => _Text;
-            set => SetField(ref _Text, value, "Text");
-        }
+        public LabelField DateTimeLabelField = new LabelField { Text = "" };
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

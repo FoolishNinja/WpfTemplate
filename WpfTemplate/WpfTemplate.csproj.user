@@ -7,10 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CarloLib\UC\ButtonField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="CarloLib\UC\CheckBoxField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="CarloLib\UC\DateField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\DateTimeDisplayField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="CarloLib\UC\DropDownField.xaml.cs">
@@ -25,15 +31,27 @@
     <Compile Update="CarloLib\UC\PasswordField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="CarloLib\UC\RadioField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CarloLib\UC\TableField.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="CarloLib\UC\TextBoxField.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="CarloLib\UC\ButtonField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="CarloLib\UC\CheckBoxField.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CarloLib\UC\DateField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\DateTimeDisplayField.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="CarloLib\UC\DropDownField.xaml">
@@ -48,10 +66,13 @@
     <Page Update="CarloLib\UC\PasswordField.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="CarloLib\UC\TextBoxField.xaml">
+    <Page Update="CarloLib\UC\RadioField.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MainWindow.xaml">
+    <Page Update="CarloLib\UC\TableField.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CarloLib\UC\TextBoxField.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
